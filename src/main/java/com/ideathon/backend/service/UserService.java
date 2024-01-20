@@ -15,15 +15,17 @@ public class UserService {
 
     //    Function to register a new user
     public ResponseEntity<String> registerUser(Map<String,Object> body){
-        String fullName = (String) body.get("fullName");
+//        String fullName = (String) body.get("fullName");
         String userName = (String) body.get("userName");
         String email = (String) body.get("email");
         String password = (String) body.get("password");
-        String dob = (String) body.get("dob");
-        String bio = (String) body.get("bio");
-        System.out.println(fullName+" "+userName+" "+email+" "+password+" "+dob+" "+bio);
-        int noOfRows = userRepository.registerUser(fullName,userName,email,password,dob,bio);
+        int contact = (int) body.get("contact");
+        String location = (String) body.get("location");
+        int pincode = (int) body.get("pincode");
+//        System.out.println(fullName+" "+userName+" "+email+" "+password+" "+dob+" "+bio);
+        int noOfRows = userRepository.registerUser(userName,email,password,contact,location,pincode);
         if(noOfRows > 0 ) return ResponseEntity.ok("Successfully Registered");
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Registration failed");
     }
+
 }
